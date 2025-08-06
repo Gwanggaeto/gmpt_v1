@@ -506,7 +506,26 @@ function textcopyindex(text) {
   textarea.select();
   document.execCommand('copy');
   document.body.removeChild(textarea);
+
+  var alertDiv = document.createElement('div');
+  alertDiv.textContent = 'Metin başarıyla kopyalandı!';
+  alertDiv.style.position = 'fixed';
+  alertDiv.style.top = '20px';
+  alertDiv.style.right = '20px';
+  alertDiv.style.backgroundColor = '#d4edda';
+  alertDiv.style.color = '#155724';
+  alertDiv.style.padding = '10px 15px';
+  alertDiv.style.border = '1px solid #c3e6cb';
+  alertDiv.style.borderRadius = '5px';
+  alertDiv.style.zIndex = 9999;
+
+  document.body.appendChild(alertDiv);
+
+  setTimeout(function () {
+    document.body.removeChild(alertDiv);
+  }, 3000);
 }
+
 
 // Anasayfa Başlık Sistemi Hata Giderim için olan kısım.
 
