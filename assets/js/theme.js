@@ -629,3 +629,48 @@ $(document).ready(function () {
 
   createDynamicCarousels(testCategories);
 });
+
+
+//Sepet Accordion Menü
+
+        function toggleAccordion(header) {
+            const item = header.parentNode;
+            const allItems = document.querySelectorAll('.accordion-item');
+            
+            // Diğer tüm accordion'ları kapat
+            allItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Tıklanan accordion'ı aç/kapat
+            item.classList.toggle('active');
+        }
+
+        // Kart numarası formatlaması
+        document.addEventListener('DOMContentLoaded', function() {
+            const cardInputs = document.querySelectorAll('input[placeholder*="1234"]');
+            cardInputs.forEach(input => {
+                input.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\s/g, '');
+                    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                    if (formattedValue.length <= 19) {
+                        e.target.value = formattedValue;
+                    }
+                });
+            });
+
+            // Expiry date formatlaması
+            const expiryInputs = document.querySelectorAll('input[placeholder*="MM/YY"]');
+            expiryInputs.forEach(input => {
+                input.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length >= 2) {
+                        value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                    }
+                    e.target.value = value;
+                });
+            });
+        });
+  
